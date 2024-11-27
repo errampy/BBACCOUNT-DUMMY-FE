@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = BASE_DIR / 'templates'
 STATIC_DIR = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
-BASEURL = 'http://127.0.0.1:9000/'
+BASEURL = 'https://bbcrudaccrep24be.pythonanywhere.com/'
 
 
 # Quick-start development settings - unsuitable for production

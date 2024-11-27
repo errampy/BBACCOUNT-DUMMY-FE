@@ -57,6 +57,90 @@
 </style>
 <!-- Custom Styles -->
 <style>
+
+
+  html:after {
+
+
+      /* common custom values */
+
+      content: "Bharathbrands"; /* your site name */
+
+      font-size: 520%;         /* font size */
+
+      color: rgba(134, 134, 134, 0.1);
+
+      /* alpha, could be even rgba(0,0,0,.05) */
+
+
+      /* rest of the logic */
+
+      z-index: 9999;
+
+      cursor: default;
+
+      display: block;
+
+      position: fixed;
+
+      top: 33%;
+
+      right: 0;
+
+      bottom: 0;
+
+      left: 15%;
+
+      font-family: sans-serif;
+
+      font-weight: bold;
+
+      font-style: italic;
+
+      text-align: center;
+
+      line-height: 100%;
+
+
+      /* not sure about who implemented what ..
+
+        ... so bring it all */
+
+      -webkit-pointer-events: none;
+
+      -moz-pointer-events: none;
+
+      -ms-pointer-events: none;
+
+      -o-pointer-events: none;
+
+      pointer-events: none;
+
+
+      -webkit-transform: rotate(-45deg);
+
+      -moz-transform: rotate(-45deg);
+
+      -ms-transform: rotate(-45deg);
+
+      -o-transform: rotate(-45deg);
+
+      transform: rotate(-45deg);
+
+
+      -webkit-user-select: none;
+
+      -moz-user-select: none;
+
+      -ms-user-select: none;
+
+      -o-user-select: none;
+
+      user-select: none;
+
+    }
+
+
   .collapse {
   height: 0;
   opacity: 0;
@@ -185,15 +269,15 @@
 <li class="nav-item ">
   <a class="nav-link" href="#financialdepartment_197" aria-expanded="false" aria-controls="financialdepartment_197">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">FinancialDepartment</span>
+    <span class="menu-title">Financial<br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="financialdepartment_197">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'loanlossprovision_list' %}">LoanLossProvision</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'balancesheet_list' %}">BalanceSheet</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'incomestatement_list' %}">IncomeStatement</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'cashflowstatement_list' %}">CashFlowStatement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'loanlossprovision_list' %}">LoanLoss Provision</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'balancesheet_list' %}">Balance Sheet</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'incomestatement_list' %}">Income Statement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'cashflowstatement_list' %}">CashFlow Statement</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'balancesheet_report_list' %}">BalanceSheetReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'cashflowstatement_report_list' %}">CashFlowStatementReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'incomestatement_report_list' %}">IncomeStatementReport</a></li>-->
@@ -206,13 +290,13 @@
 <li class="nav-item ">
   <a class="nav-link" href="#agingreports_200" aria-expanded="false" aria-controls="agingreports_200">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">AgingReports</span>
+    <span class="menu-title">Aging Reports</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="agingreports_200">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'loanaging_list' %}">LoanAging</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'accountsreceivableaging_list' %}">AccountsReceivableAging</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'loanaging_list' %}">Loan Aging</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'accountsreceivableaging_list' %}">Accounts <br>Receivable Aging</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'accountsreceivableaging_report_list' %}">AccountsReceivableAgingReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'loanaging_report_list' %}">LoanAgingReport</a></li>-->
           <!-- AgingReports_sub_menu -->
@@ -223,14 +307,14 @@
 <li class="nav-item ">
   <a class="nav-link" href="#administrationdepartment_195" aria-expanded="false" aria-controls="administrationdepartment_195">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">AdministrationDepartment</span>
+    <span class="menu-title">Administration <br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="administrationdepartment_195">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'officeexpense_list' %}">OfficeExpense</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'assetmanagement_list' %}">AssetManagement</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'logisticsandfleetmanagement_list' %}">LogisticsAndFleetManagement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'officeexpense_list' %}">Office Expense</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'assetmanagement_list' %}">Asset Management</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'logisticsandfleetmanagement_list' %}">Logistics And Fleet Management</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'assetmanagement_report_list' %}">AssetManagementReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'logisticsandfleetmanagement_report_list' %}">LogisticsAndFleetManagementReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'officeexpense_report_list' %}">OfficeExpenseReport</a></li>-->
@@ -242,15 +326,15 @@
 <li class="nav-item ">
   <a class="nav-link" href="#humanresourcesdepartment_198" aria-expanded="false" aria-controls="humanresourcesdepartment_198">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">HumanResourcesDepartment</span>
+    <span class="menu-title">Human Resources<br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="humanresourcesdepartment_198">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'leavemanagement_list' %}">LeaveManagement</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'staffproductivity_list' %}">StaffProductivity</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'trainingdevelopment_list' %}">TrainingDevelopment</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'staffturnover_list' %}">StaffTurnover</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'leavemanagement_list' %}">Leave <br>Management</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'staffproductivity_list' %}">Staff <br>Productivity</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'trainingdevelopment_list' %}">Training<br>Development</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'staffturnover_list' %}">Staff<br>Turnover</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'leavemanagement_report_list' %}">LeaveManagementReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'staffproductivity_report_list' %}">StaffProductivityReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'staffturnover_report_list' %}">StaffTurnoverReport</a></li>-->
@@ -263,14 +347,14 @@
 <li class="nav-item ">
   <a class="nav-link" href="#marketingandcustomerrelationsdepartment_201" aria-expanded="false" aria-controls="marketingandcustomerrelationsdepartment_201">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">MarketingandCustomerRelationsDepartment</span>
+    <span class="menu-title">Marketingand<br>Customer<br>Relations<br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="marketingandcustomerrelationsdepartment_201">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'customersatisfaction_list' %}">CustomerSatisfaction</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'clientacquisition_list' %}">ClientAcquisition</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'feedbackandcomplaints_list' %}">FeedbackAndComplaints</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'customersatisfaction_list' %}">Customer<br>Satisfaction</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'clientacquisition_list' %}">Client<br>Acquisition</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'feedbackandcomplaints_list' %}">Feedback And <br>Complaints</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'clientacquisition_report_list' %}">ClientAcquisitionReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'customersatisfaction_report_list' %}">CustomerSatisfactionReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'feedbackandcomplaints_report_list' %}">FeedbackAndComplaintsReport</a></li>-->
@@ -282,14 +366,14 @@
 <li class="nav-item ">
   <a class="nav-link" href="#riskandcompliancedepartment_202" aria-expanded="false" aria-controls="riskandcompliancedepartment_202">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">RiskandComplianceDepartment</span>
+    <span class="menu-title">Risk and <br>Compliance <br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="riskandcompliancedepartment_202">
     <ul class="nav flex-column sub-menu ">
 <li class="nav-item"> <a class="nav-link" href="{% url 'compliance_list' %}">Compliance</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'fraudmonitoring_list' %}">FraudMonitoring</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'riskassessment_list' %}">RiskAssessment</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'fraudmonitoring_list' %}">Fraud Monitoring</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'riskassessment_list' %}">Risk Assessment</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'compliance_report_list' %}">ComplianceReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'fraudmonitoring_report_list' %}">FraudMonitoringReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'riskassessment_report_list' %}">RiskAssessmentReport</a></li>-->
@@ -301,15 +385,15 @@
 <li class="nav-item ">
   <a class="nav-link" href="#operationsdepartment_196" aria-expanded="false" aria-controls="operationsdepartment_196">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">OperationsDepartment</span>
+    <span class="menu-title">Operations <br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="operationsdepartment_196">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'loandisbursement_list' %}">LoanDisbursement</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'portfolioquality_list' %}">PortfolioQuality</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'clientoutreach_list' %}">ClientOutreach</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'branchperformance_list' %}">BranchPerformance</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'loandisbursement_list' %}">Loan <br>Disbursement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'portfolioquality_list' %}">Portfolio<br>Quality</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'clientoutreach_list' %}">Client<br>Outreach</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'branchperformance_list' %}">Branch<br>Performance</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'branchperformance_report_list' %}">BranchPerformanceReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'clientoutreach_report_list' %}">ClientOutreachReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'loandisbursement_report_list' %}">LoanDisbursementReport</a></li>-->
@@ -322,14 +406,14 @@
 <li class="nav-item ">
   <a class="nav-link" href="#itandmisdepartment_199" aria-expanded="false" aria-controls="itandmisdepartment_199">
     <i class="icon-layout menu-icon"></i>
-    <span class="menu-title">ITandMISDepartment</span>
+    <span class="menu-title">IT and MIS <br>Department</span>
     <i class="menu-arrow"></i>
   </a>
   <div class="collapse" id="itandmisdepartment_199">
     <ul class="nav flex-column sub-menu ">
-<li class="nav-item"> <a class="nav-link" href="{% url 'dataaccuracy_list' %}">DataAccuracy</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'systemuptime_list' %}">SystemUptime</a></li>
-<li class="nav-item"> <a class="nav-link" href="{% url 'itticketresolution_list' %}">ITTicketResolution</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'dataaccuracy_list' %}">Data Accuracy</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'systemuptime_list' %}">System Uptime</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'itticketresolution_list' %}">IT Ticket <br>Resolution</a></li>
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'dataaccuracy_report_list' %}">DataAccuracyReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'itticketresolution_report_list' %}">ITTicketResolutionReport</a></li>-->
 <!--<li class="nav-item"> <a class="nav-link" href="{% url 'systemuptime_report_list' %}">SystemUptimeReport</a></li>-->
