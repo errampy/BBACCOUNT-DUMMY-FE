@@ -1,0 +1,11 @@
+model_name,field_name
+AssetManagement,total_fixed_assets
+AssetManagement,depreciation
+AssetManagement,maintenance_costs
+AssetManagement,asset_utilization_rate
+AssetManagement,repairs_and_upgrades_cost
+AssetManagement,created_at
+AssetManagement,updated_at
+AssetManagement,reported_date
+AssetManagement,new_assets_acquired
+AssetManagement,comments

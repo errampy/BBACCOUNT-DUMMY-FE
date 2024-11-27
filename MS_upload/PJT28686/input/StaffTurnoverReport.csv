@@ -1,0 +1,11 @@
+model_name,field_name
+StaffTurnover,total_departures
+StaffTurnover,total_new_hires
+StaffTurnover,turnover_rate
+StaffTurnover,current_staff_count
+StaffTurnover,total_staff_at_start
+StaffTurnover,created_at
+StaffTurnover,updated_at
+StaffTurnover,reported_date
+StaffTurnover,key_departures
+StaffTurnover,hiring_notes

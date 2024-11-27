@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>detected fraud incidents</th>
+<th>total amount involved</th>
+<th>resolution status percentage</th>
+<th>open fraud cases</th>
+<th>fraud detection methods</th>
+<th>reported date</th>
+<th>fraud prevention actions</th>
+<th>investigation comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.detected_fraud_incidents}}</td>
+<td>{{data.total_amount_involved}}</td>
+<td>{{data.resolution_status_percentage}}</td>
+<td>{{data.open_fraud_cases}}</td>
+<td>{{data.fraud_detection_methods}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.fraud_prevention_actions}}</td>
+<td>{{data.investigation_comments}}</td>
+                    <td>
+                        <a href="{% url 'fraudmonitoring_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'fraudmonitoring_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

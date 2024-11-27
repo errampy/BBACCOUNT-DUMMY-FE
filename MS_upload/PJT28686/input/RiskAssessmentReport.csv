@@ -1,0 +1,12 @@
+model_name,field_name
+RiskAssessment,top_risks
+RiskAssessment,risk_scores
+RiskAssessment,mitigation_actions
+RiskAssessment,residual_risk_level
+RiskAssessment,risk_review_frequency
+RiskAssessment,created_at
+RiskAssessment,updated_at
+RiskAssessment,reported_date
+RiskAssessment,incidents_tracked
+RiskAssessment,risk_owner
+RiskAssessment,risk_comments

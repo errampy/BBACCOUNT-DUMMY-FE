@@ -1,0 +1,9 @@
+model_name,field_name
+LoanLossProvision,loans_at_risk
+LoanLossProvision,provision_rate
+LoanLossProvision,required_provisions
+LoanLossProvision,loan_categories
+LoanLossProvision,remarks
+LoanLossProvision,created_at
+LoanLossProvision,updated_at
+LoanLossProvision,reported_date

@@ -1,0 +1,10 @@
+model_name,field_name
+LoanAging,overdue_0_30_days
+LoanAging,overdue_31_60_days
+LoanAging,overdue_61_90_days
+LoanAging,overdue_91_days_plus
+LoanAging,total_outstanding_loans
+LoanAging,created_at
+LoanAging,updated_at
+LoanAging,reported_date
+LoanAging,comments

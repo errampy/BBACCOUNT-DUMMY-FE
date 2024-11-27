@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style>
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .form-group label {
+        margin-bottom: 5px; 
+        font-weight: bold; 
+    }
+
+    .form-control {
+    padding: 12px 15px;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    width: 100%; 
+    box-sizing: border-box;
+}
+    .text-danger {
+        color: red;
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+
+    .btn {
+        margin-right: 10px; 
+    }
+
+    .btn-success, .btn-danger {
+        padding: 10px 15px;
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+    input[type="text"]{
+    padding: 12px 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+</style>
+
+<div class="content-wrapper">
+    {% comment %} <h1>Edit Workflow Group</h1> {% endcomment %}
+    <h4 class="card-title">Edit Workflow Group</h4>
+    
+    <button type="submit" form="myForm" class="btn btn-success">Save</button>
+    <a href="{% url 'workflow_category_list' %}" class="btn btn-danger">Cancel</a>
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="container mt-5 col-md-6">
+            <div class="card card-body">
+                <form method="post" enctype="multipart/form-data" id="myForm">
+                    {% csrf_token %}
+                    {% for form_field in form %}
+                    <div class="form-group">
+                        {{ form_field.label_tag }}
+                        {% if form_field.name == 'code' %}
+                        <input type="text" name="code" value="{{ form_field.value }}" class="form-control" readonly>
+                        {% else %}
+                        {{ form_field }}
+                        {% endif %}
+                        <span class="text-danger">{{ form_field.errors }}</span>
+                    </div>
+                    {% endfor %}
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <a href="{% url 'workflow_category_create' %}"  class="btn btn-primary float-right">+ New
+                </a>
+                <h3 class="card-title">Workflow Categories</h3>
+                {% comment %} <div class="tab-content">
+                    <!-- New Tab -->
+                    <div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab"> {% endcomment %}
+                <br><br>
+                <div class="table-responsive">
+                    <table id="tableID" class="display table table-hover">
+                        <thead class="bg-col">
+                            <tr>
+                                <th>No.</th>
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if categories %}
+                            {% for data in categories %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ data.code }}</td>
+                                    <td>{{ data.description }}</td>
+                    
+                                    <td>
+                                   
+                                    {% if data.code %}
+                                            <a href="{% url 'workflow_category_update' data.code %}" class="btn btn-warning btn-sm">Edit</a>
+                                            <a href="{% url 'workflow_category_delete' data.code %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Workflow Category?');">Delete</a>
+                                        </td> 
+                                    {% endif %}
+                                    {% comment %} <div class="dropdown">
+                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuIconButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton2">
+                                                    <a class="dropdown-item" href="">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-eye"></i>View</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflow_category_update' data.code %}">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i>Edit</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflow_category_delete' data.code %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-trash-alt"></i>Delete</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'delegate_record' pk=data.code model_name='Member' app_name='mainapp' url='member-list' %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-user-shield"></i> Delegate</button>
+                                                    </a>
+                                                </div>                                        
+                                                
+                                    </td>  {% endcomment %}
+                                </tr>
+
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                <td colspan="4">No categories available.</td>
+                                </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+{% comment %} </div>
+</div> {% endcomment %}
+
+{% endblock %}

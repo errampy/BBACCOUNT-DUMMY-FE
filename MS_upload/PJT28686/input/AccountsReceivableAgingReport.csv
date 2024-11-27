@@ -1,0 +1,11 @@
+model_name,field_name
+AccountsReceivableAging,current
+AccountsReceivableAging,overdue_30_days
+AccountsReceivableAging,overdue_60_days
+AccountsReceivableAging,overdue_90_days
+AccountsReceivableAging,overdue_90_days_plus
+AccountsReceivableAging,created_at
+AccountsReceivableAging,updated_at
+AccountsReceivableAging,reported_date
+AccountsReceivableAging,total_receivables
+AccountsReceivableAging,comments

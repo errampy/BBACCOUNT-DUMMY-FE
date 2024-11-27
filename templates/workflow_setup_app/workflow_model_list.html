@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                {% comment %} <a href="{% url 'workflow_model_create' %}">
+                    <button type="button" class="btn btn-primary float-right">+ New</button>
+                </a> {% endcomment %}
+                <h3 class="card-title">Workflow Models</h3>
+                <br><br>
+                <div class="table-responsive">
+                    <table id="tableID" class="display table table-hover">
+                        <thead class="bg-col">
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                      
+                                <th>Created At</th>
+                                <th>Updated At</th>
+                      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if models %}
+                                {% for model in models %}
+                                    <tr>
+                                       
+                                        <td>{{ forloop.counter }}</td>
+                                     
+                                        <td><a href="{% url 'workflow_mapping_update' model.id %}">{{ model.model_name }}</a></td>
+                                       
+                                        <td>{{ model.created_at }}</td>
+                                        <td>{{ model.updated_at }}</td>
+                                      
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">No models available.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

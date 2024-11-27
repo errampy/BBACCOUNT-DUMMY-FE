@@ -1,0 +1,11 @@
+model_name,field_name
+LeaveManagement,pending_leave_requests
+LeaveManagement,total_leave_days_taken
+LeaveManagement,average_leave_days_per_staff
+LeaveManagement,highest_leave_days
+LeaveManagement,lowest_leave_days
+LeaveManagement,created_at
+LeaveManagement,updated_at
+LeaveManagement,reported_date
+LeaveManagement,leave_trends
+LeaveManagement,leave_policy_notes

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style>
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .form-group label {
+        margin-bottom: 5px; 
+        font-weight: bold; 
+    }
+
+    .form-control {
+        padding: 12px 15px;
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        width: 100%; 
+        box-sizing: border-box;
+    }
+
+    .text-danger {
+        color: red;
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+
+    .btn {
+        margin-right: 10px; 
+    }
+
+    .btn-success, .btn-danger {
+        padding: 10px 15px;
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+
+    input[type="text"], select {
+        padding: 12px 15px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        width: 100%; 
+        box-sizing: border-box; 
+    }
+</style>
+
+<div class="content-wrapper">
+    {% comment %} <h1>Edit Workflow User Group Mapping</h1> {% endcomment %}
+    <h4 class="card-title">Edit Workflow User Group Mapping</h4>
+    <br><br>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="container mt-5 col-md-6">
+            <div class="card card-body">
+                <form method="post" enctype="multipart/form-data" id="myForm">
+                    {% csrf_token %}
+
+                    <!-- Workflow Group Field -->
+                    <div class="form-group">
+                        <label for="workflow_group">Workflow Group</label>
+                        <select name="workflow_group" id="workflow_group" class="form-control" data-url="{% url 'get_next_sequence' %}">
+                            <option value="">Select Workflow Group</option>
+                            {% for group in workflow_group %}
+                                <option value="{{ group.code }}" {% if group.code == mapping.workflow_group.code %}selected{% endif %}>{{ group.description }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="text-danger">{{ form.workflow_group.errors }}</span>
+                    </div>
+
+                    <!-- User Field -->
+                    <div class="form-group">
+                        <label for="user">User</label>
+                        <select name="user" id="user" class="form-control">
+                            <option value="">Select User</option>
+                            {% for user in user %}
+                                <option value="{{ user.id }}" {% if user.id == mapping.user.id %}selected{% endif %}>{{ user.first_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="text-danger">{{ form.user.errors }}</span>
+                    </div>
+
+                    <!-- Sequence Field -->
+                    <div class="form-group">
+                        <label for="sequence">Sequence</label>
+                        <select name="sequence" id="sequence" class="form-control">
+                            <option value="">Select Sequence</option>
+                            {% for sequence in sequence %}
+                                <option value="{{ sequence.id }}" {% if sequence.id == mapping.sequence.id %}selected{% endif %}>{{ sequence.sequence_series }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="text-danger">{{ form.sequence.errors }}</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'workflow_user_group_mapping_list' %}" class="btn btn-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const workflowGroupSelect = document.getElementById('workflow_group');
+        const sequenceField = document.getElementById('sequence');
+    
+        workflowGroupSelect.addEventListener('change', function() {
+            const workflowGroupId = this.value;
+    
+            if (workflowGroupId) {
+                
+                fetch(`{% url 'get_next_sequence' %}?workflow_group_id=${workflowGroupId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            alert('error is comming')
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                       
+                        // Clear and reset the sequence dropdown
+                        sequenceField.innerHTML = `<option value="">Select Sequence</option>`;
+                        const nextSequences = data.next_sequences[0].next_sequences;
+
+                        if (nextSequences && nextSequences.length > 0) {
+                            nextSequences.forEach(sequence => {
+                                    const option = document.createElement('option');
+                                    option.value = sequence;
+                                    option.textContent = sequence;
+                                    sequenceField.appendChild(option);
+                                });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            } else {
+              
+                sequenceField.innerHTML = `<option value="">Select Sequence</option>`;
+            }
+        });
+    });
+    </script>
+    
+
+{% endblock %}

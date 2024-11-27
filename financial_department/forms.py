@@ -1,0 +1,148 @@
+from django import forms
+from .models import *
+from django.forms import DateInput, DateTimeInput, TimeInput, CheckboxInput, Textarea, TextInput
+
+
+class LoanLossProvisionLiveForm(forms.Form):
+	loans_at_risk = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	provision_rate = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	required_provisions = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	loan_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	remarks = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class LoanLossProvisionTempForm(forms.Form):
+	loans_at_risk = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	provision_rate = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	required_provisions = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	loan_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	remarks = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class LoanLossProvisionTempPAForm(forms.Form):
+	loans_at_risk = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	provision_rate = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	required_provisions = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	loan_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	remarks = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class LoanLossProvisionTempUpdateForm(forms.Form):
+	loans_at_risk = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	provision_rate = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	required_provisions = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	loan_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	remarks = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class LoanLossProvisionLiveUpdateForm(forms.Form):
+	loans_at_risk = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	provision_rate = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	required_provisions = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	loan_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	remarks = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+
+class BalanceSheetLiveForm(forms.Form):
+	assets = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	liabilities = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	equity = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	asset_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	liability_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class BalanceSheetTempForm(forms.Form):
+	assets = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	liabilities = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	equity = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	asset_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	liability_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class BalanceSheetTempPAForm(forms.Form):
+	assets = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	liabilities = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	equity = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	asset_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	liability_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class BalanceSheetTempUpdateForm(forms.Form):
+	assets = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	liabilities = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	equity = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	asset_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	liability_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class BalanceSheetLiveUpdateForm(forms.Form):
+	assets = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	liabilities = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	equity = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	asset_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	liability_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+
+class IncomeStatementLiveForm(forms.Form):
+	revenue = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	operating_expenses = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_income = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	revenue_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	expense_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class IncomeStatementTempForm(forms.Form):
+	revenue = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	operating_expenses = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_income = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	revenue_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	expense_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class IncomeStatementTempPAForm(forms.Form):
+	revenue = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	operating_expenses = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_income = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	revenue_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	expense_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class IncomeStatementTempUpdateForm(forms.Form):
+	revenue = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	operating_expenses = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_income = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	revenue_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	expense_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class IncomeStatementLiveUpdateForm(forms.Form):
+	revenue = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	operating_expenses = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_income = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	revenue_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	expense_breakdown = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+
+class CashFlowStatementLiveForm(forms.Form):
+	inflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	outflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_cash_flow = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	inflow_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	outflow_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class CashFlowStatementTempForm(forms.Form):
+	inflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	outflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_cash_flow = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	inflow_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	outflow_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class CashFlowStatementTempPAForm(forms.Form):
+	inflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	outflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_cash_flow = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	inflow_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	outflow_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class CashFlowStatementTempUpdateForm(forms.Form):
+	inflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	outflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_cash_flow = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	inflow_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	outflow_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))
+class CashFlowStatementLiveUpdateForm(forms.Form):
+	inflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	outflows = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	net_cash_flow = forms.FloatField(required=True, widget=forms.NumberInput(attrs={"class": "form-control"}))
+	inflow_sources = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	outflow_categories = forms.CharField( required=True, widget=forms.Textarea(attrs={"class": "form-control"}))
+	reported_date = forms.DateField(required=True, widget=forms.DateInput(attrs={"type": "date","class": "form-control"}))

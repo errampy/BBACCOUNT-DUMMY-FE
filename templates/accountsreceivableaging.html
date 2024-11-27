@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>current</th>
+<th>overdue 30 days</th>
+<th>overdue 60 days</th>
+<th>overdue 90 days</th>
+<th>overdue 90 days plus</th>
+<th>reported date</th>
+<th>total receivables</th>
+<th>comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.current}}</td>
+<td>{{data.overdue_30_days}}</td>
+<td>{{data.overdue_60_days}}</td>
+<td>{{data.overdue_90_days}}</td>
+<td>{{data.overdue_90_days_plus}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.total_receivables}}</td>
+<td>{{data.comments}}</td>
+                    <td>
+                        <a href="{% url 'accountsreceivableaging_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'accountsreceivableaging_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

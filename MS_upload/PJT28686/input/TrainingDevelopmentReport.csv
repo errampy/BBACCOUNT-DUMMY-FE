@@ -1,0 +1,10 @@
+model_name,field_name
+TrainingDevelopment,training_sessions_conducted
+TrainingDevelopment,staff_trained
+TrainingDevelopment,total_training_costs
+TrainingDevelopment,average_training_cost_per_person
+TrainingDevelopment,training_focus_areas
+TrainingDevelopment,created_at
+TrainingDevelopment,updated_at
+TrainingDevelopment,reported_date
+TrainingDevelopment,training_feedback_summary

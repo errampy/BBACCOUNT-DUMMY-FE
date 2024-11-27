@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>tickets raised</th>
+<th>tickets resolved</th>
+<th>average resolution time hours</th>
+<th>high priority tickets</th>
+<th>unresolved tickets</th>
+<th>reported date</th>
+<th>escalation rate</th>
+<th>resolution comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.tickets_raised}}</td>
+<td>{{data.tickets_resolved}}</td>
+<td>{{data.average_resolution_time_hours}}</td>
+<td>{{data.high_priority_tickets}}</td>
+<td>{{data.unresolved_tickets}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.escalation_rate}}</td>
+<td>{{data.resolution_comments}}</td>
+                    <td>
+                        <a href="{% url 'itticketresolution_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'itticketresolution_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

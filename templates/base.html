@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>BB CRUD</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/feather/feather.css'  %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'assets/css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
+<style>
+  /* General styling for the tab navigation */
+.nav-tabs .nav-link {
+    border: 1px solid #ddd; /* Default border color for inactive tabs */
+    border-radius: 0.25rem; /* Rounded corners */
+    background-color: #f8f9fa; /* Default background color for inactive tabs */
+    color: #495057; /* Default text color for inactive tabs */
+}
+
+/* Styling for the active tab */
+.nav-tabs .nav-link.active {
+    background-color: #4747A1; /* Background color for the active tab */
+    color: #fff; /* Text color for the active tab */
+    border-color: #4747A1; /* Border color for the active tab */
+}
+
+/* Optional: Styling for hover effect */
+.nav-tabs .nav-link:hover {
+    background-color: #e2e6ea; /* Background color on hover */
+    color: #495057; /* Text color on hover */
+}
+
+/* Optional: Styling for the tab content */
+.tab-content {
+    padding: 1rem; /* Padding inside the tab content area */
+}
+
+</style>
+<!-- Custom Styles -->
+<style>
+  .collapse {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease; /* Smooth transition for both height and opacity */
+}
+
+/* When the menu is shown, set height to auto and opacity to full */
+.collapse.show {
+  height: auto; /* Ensures it takes the required height */
+  opacity: 1;
+  overflow: visible; /* Allows content to be visible */
+  transition: height 0.3s ease, opacity 0.3s ease; /* Ensure the transition matches */
+}
+.sidebar .nav.sub-menu{
+  
+  padding: 0.25rem 0 0 2.07rem;
+}
+</style>
+  </head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="{% url 'dashboard' %}"><img src="{% static 'assets/images/bb_logo.jpg' %}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="{% url 'dashboard' %}"><img src="{% static 'assets/images/logo-mini.svg' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{% static 'assets/images/faces/face28.jpg' %}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item" href="{% url 'logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item {{dashboard}}">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+<li class="nav-item ">
+  <a class="nav-link" href="#financialdepartment_197" aria-expanded="false" aria-controls="financialdepartment_197">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">FinancialDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="financialdepartment_197">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'loanlossprovision_list' %}">LoanLossProvision</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'balancesheet_list' %}">BalanceSheet</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'incomestatement_list' %}">IncomeStatement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'cashflowstatement_list' %}">CashFlowStatement</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'balancesheet_report_list' %}">BalanceSheetReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'cashflowstatement_report_list' %}">CashFlowStatementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'incomestatement_report_list' %}">IncomeStatementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'loanlossprovision_report_list' %}">LoanLossProvisionReport</a></li>-->
+              <!-- FinancialDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#agingreports_200" aria-expanded="false" aria-controls="agingreports_200">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">AgingReports</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="agingreports_200">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'loanaging_list' %}">LoanAging</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'accountsreceivableaging_list' %}">AccountsReceivableAging</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'accountsreceivableaging_report_list' %}">AccountsReceivableAgingReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'loanaging_report_list' %}">LoanAgingReport</a></li>-->
+          <!-- AgingReports_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#administrationdepartment_195" aria-expanded="false" aria-controls="administrationdepartment_195">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">AdministrationDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="administrationdepartment_195">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'officeexpense_list' %}">OfficeExpense</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'assetmanagement_list' %}">AssetManagement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'logisticsandfleetmanagement_list' %}">LogisticsAndFleetManagement</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'assetmanagement_report_list' %}">AssetManagementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'logisticsandfleetmanagement_report_list' %}">LogisticsAndFleetManagementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'officeexpense_report_list' %}">OfficeExpenseReport</a></li>-->
+            <!-- AdministrationDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#humanresourcesdepartment_198" aria-expanded="false" aria-controls="humanresourcesdepartment_198">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">HumanResourcesDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="humanresourcesdepartment_198">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'leavemanagement_list' %}">LeaveManagement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'staffproductivity_list' %}">StaffProductivity</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'trainingdevelopment_list' %}">TrainingDevelopment</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'staffturnover_list' %}">StaffTurnover</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'leavemanagement_report_list' %}">LeaveManagementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'staffproductivity_report_list' %}">StaffProductivityReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'staffturnover_report_list' %}">StaffTurnoverReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'trainingdevelopment_report_list' %}">TrainingDevelopmentReport</a></li>-->
+              <!-- HumanResourcesDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#marketingandcustomerrelationsdepartment_201" aria-expanded="false" aria-controls="marketingandcustomerrelationsdepartment_201">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">MarketingandCustomerRelationsDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="marketingandcustomerrelationsdepartment_201">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'customersatisfaction_list' %}">CustomerSatisfaction</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'clientacquisition_list' %}">ClientAcquisition</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'feedbackandcomplaints_list' %}">FeedbackAndComplaints</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'clientacquisition_report_list' %}">ClientAcquisitionReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'customersatisfaction_report_list' %}">CustomerSatisfactionReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'feedbackandcomplaints_report_list' %}">FeedbackAndComplaintsReport</a></li>-->
+            <!-- MarketingandCustomerRelationsDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#riskandcompliancedepartment_202" aria-expanded="false" aria-controls="riskandcompliancedepartment_202">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">RiskandComplianceDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="riskandcompliancedepartment_202">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'compliance_list' %}">Compliance</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'fraudmonitoring_list' %}">FraudMonitoring</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'riskassessment_list' %}">RiskAssessment</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'compliance_report_list' %}">ComplianceReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'fraudmonitoring_report_list' %}">FraudMonitoringReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'riskassessment_report_list' %}">RiskAssessmentReport</a></li>-->
+            <!-- RiskandComplianceDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#operationsdepartment_196" aria-expanded="false" aria-controls="operationsdepartment_196">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">OperationsDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="operationsdepartment_196">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'loandisbursement_list' %}">LoanDisbursement</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'portfolioquality_list' %}">PortfolioQuality</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'clientoutreach_list' %}">ClientOutreach</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'branchperformance_list' %}">BranchPerformance</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'branchperformance_report_list' %}">BranchPerformanceReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'clientoutreach_report_list' %}">ClientOutreachReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'loandisbursement_report_list' %}">LoanDisbursementReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'portfolioquality_report_list' %}">PortfolioQualityReport</a></li>-->
+              <!-- OperationsDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+<li class="nav-item ">
+  <a class="nav-link" href="#itandmisdepartment_199" aria-expanded="false" aria-controls="itandmisdepartment_199">
+    <i class="icon-layout menu-icon"></i>
+    <span class="menu-title">ITandMISDepartment</span>
+    <i class="menu-arrow"></i>
+  </a>
+  <div class="collapse" id="itandmisdepartment_199">
+    <ul class="nav flex-column sub-menu ">
+<li class="nav-item"> <a class="nav-link" href="{% url 'dataaccuracy_list' %}">DataAccuracy</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'systemuptime_list' %}">SystemUptime</a></li>
+<li class="nav-item"> <a class="nav-link" href="{% url 'itticketresolution_list' %}">ITTicketResolution</a></li>
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'dataaccuracy_report_list' %}">DataAccuracyReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'itticketresolution_report_list' %}">ITTicketResolutionReport</a></li>-->
+<!--<li class="nav-item"> <a class="nav-link" href="{% url 'systemuptime_report_list' %}">SystemUptimeReport</a></li>-->
+            <!-- ITandMISDepartment_sub_menu -->
+    </ul>
+  </div>
+</li>
+
+                  <!-- next menu -->
+
+
+<!--          <li class="nav-item ">-->
+<!--            <a class="nav-link" href="#workflow_1" aria-expanded="false" aria-controls="workflow_1">-->
+<!--              <i class="icon-layout menu-icon"></i>-->
+<!--              <span class="menu-title">workflow</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse" id="workflow_1">-->
+<!--              <ul class="nav flex-column sub-menu ">-->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'sequence_list' %}">Sequences</a></li>-->
+<!--          -->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_category_list' %}">WorkflowCategory</a></li>-->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_group_list' %}">WorkflowGroup</a></li>-->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_user_group_mapping_list' %}">WorkflowUser<br>GroupMapping</a></li>-->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_setup_list' %}">WorkflowSetup</a></li>-->
+<!--          <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_model_list' %}">Workflow<br>Models</a></li>-->
+<!--           {% comment %} <li class="nav-item"> <a class="nav-link" href="{% url 'workflow_model_mapping_list' %}">WorkflowSetup To <br>Model Registration<br> Mapping</a></li>  {% endcomment %}-->
+<!--                          &lt;!&ndash; workflow_sub_menu &ndash;&gt;-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+
+          
+<!--          <li class="nav-item {{user_registration}}{{user_list}}{{roles}}">-->
+<!--            <a class="nav-link"  href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">-->
+<!--              <i class="icon-layout menu-icon"></i>-->
+<!--              <span class="menu-title">User Management</span>-->
+<!--              <i class="menu-arrow"></i>-->
+<!--            </a>-->
+<!--            <div class="collapse {{user_registration_show}}{{user_list_show}}{{roles_show}}" id="ui-basic">-->
+<!--              <ul class="nav flex-column sub-menu ">-->
+<!--                <li class="nav-item" {{roles}}> <a class="nav-link" href="{% url 'roles' %}">User roles</a></li>-->
+<!--                <li class="nav-item" {{user_list}}> <a class="nav-link" href="{% url 'user_list' %}">User</a></li>-->
+<!--            </ul>-->
+<!--            </div>-->
+<!--          </li>-->
+
+          <!-- <li class="nav-item">
+            <a class="nav-link"  href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Form elements</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
+              </ul>
+            </div>
+          </li> -->
+
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        {% block body_block %}
+        {% endblock %}
+
+
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <!-- <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024.  Premium <a href="#" target="_blank">ERP Sacco</a> from Us. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="#" target="_blank">Us</a></span>
+          </div> -->
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  {% block script_block %}
+
+  {% endblock %}
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Find all elements that are links with href starting with '#'
+      var collapsibleLinks = document.querySelectorAll('a.nav-link[href^="#"]');
+  
+      collapsibleLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent default anchor click behavior
+  
+          var targetId = link.getAttribute('href').substring(1); // Get the ID from href (without '#')
+          var targetElement = document.getElementById(targetId); // Find the element with that ID
+  
+          if (targetElement) {
+            // Check if this is a main menu (not a sub-menu)
+            var isMainMenu = !link.closest('.sub-menu');
+  
+            if (isMainMenu) {
+              // Close all other open main menus
+              document.querySelectorAll('.collapse.show').forEach(function (openElement) {
+                if (openElement !== targetElement && !openElement.closest('.sub-menu')) {
+                  // Collapse other open main menus
+                  var openLink = document.querySelector('a.nav-link[href="#' + openElement.id + '"]');
+                  if (openLink) {
+                    openLink.setAttribute('aria-expanded', 'false'); // Update aria-expanded
+                  }
+                  openElement.style.height = openElement.scrollHeight + 'px'; // Set height to current height
+                  openElement.offsetHeight; // Force browser reflow
+                  openElement.style.height = '0'; // Animate to height 0
+                  openElement.style.opacity = '0'; // Fade out
+                  setTimeout(function () {
+                    openElement.classList.remove('show');
+                  }, 300); // Remove class after transition duration
+                }
+              });
+            }
+  
+            // Toggle the current menu
+            if (targetElement.classList.contains('show')) {
+              // Collapse menu
+              link.setAttribute('aria-expanded', 'false'); // Set aria-expanded to false
+              targetElement.style.height = targetElement.scrollHeight + 'px'; // Set height to current height
+              targetElement.offsetHeight; // Force browser reflow
+              targetElement.style.height = '0'; // Animate to height 0
+              targetElement.style.opacity = '0'; // Fade out
+              setTimeout(function () {
+                targetElement.classList.remove('show');
+              }, 300); // Remove class after transition duration
+            } else {
+              // Expand menu
+              link.setAttribute('aria-expanded', 'true'); // Set aria-expanded to true
+              targetElement.classList.add('show'); // Add the show class to transition smoothly
+              targetElement.style.height = '0'; // Reset height to zero first
+              targetElement.offsetHeight; // Force browser reflow
+              targetElement.style.height = targetElement.scrollHeight + 'px'; // Animate to full height
+              targetElement.style.opacity = '1'; // Fade in
+              setTimeout(function () {
+                targetElement.style.height = 'auto'; // Set height to auto after transition
+              }, 300); // Reset height after the transition duration
+            }
+          }
+        });
+      });
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+  
+    // Common function to handle dropdown population based on payload
+  function fetchData(...fieldsArray) {
+    // Loop through the fieldsArray (which contains multiple arrays of arguments)
+    fieldsArray.forEach(function(fieldData) {
+      const [service_name, field_name, field_id, linkTableName, selectValue] = fieldData;
+  
+      // Only make AJAX request if selectValue is not empty
+      if (selectValue) {
+        let payload = {
+          'service_name': service_name, // dynamically setting the service name
+          'field_name': field_name,     // the primary key or value to filter data
+          'field_value': selectValue,
+          'link_table_name': linkTableName
+        };
+  
+        $.ajax({
+          url: "{% url 'get_data' %}", // URL for the request
+          type: 'GET',
+          dataType: 'json',
+          data: payload, // Payload data
+          success: function(data) {
+            console.log(data);
+            console.log('field_id', field_id);
+            let selectElement = $(field_id);
+            selectElement.empty(); // Clear existing options
+            // Populate the select element with the response data
+            selectElement.append(`<option value="">---select---</option>`);
+            $.each(data.value, function(index, datas) {
+              selectElement.append(`<option value="${datas.id}">${datas.name}</option>`);
+            });
+          },
+          error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+          }
+        });
+      } else {
+        console.error('selectValue is required to fetch data');
+      }
+    });
+  }
+  
+  
+  </script>
+  
+
+  <!-- plugins:js -->
+  <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  {% comment %} <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script> {% endcomment %}
+  {% comment %} <script src="{% static 'assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script> {% endcomment %}
+  {% comment %} <script src="{% static 'assets/js/dataTables.select.min.js' %}"></script> {% endcomment %}
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+  <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'assets/js/template.js' %}"></script>
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+  <script src="{% static 'assets/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'assets/js/dashboard.js' %}"></script>
+  <script src="{% static 'assets/js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+
+     <!-- DataTables -->
+     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.colVis.min.js"></script>
+     
+  
+  <script>
+    $(document).ready(function () {
+    const dataTable = $('#tableID').DataTable({
+        dom: 'Blfrtip', // Add custom buttons to the DataTable
+        buttons: [
+            {
+                extend: 'copy',
+                text: '<i class="fas fa-copy"></i> ',
+                titleAttr: 'Copy',
+                className: 'btn btn-info btn-sm',
+            },
+            {
+                extend: 'csv',
+                text: '<i class="fas fa-file-csv"></i> ',
+                titleAttr: 'CSV',
+                className: 'btn btn-success btn-sm',
+            },
+            {
+                extend: 'excel',
+                text: '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Excel',
+                className: 'btn btn-success btn-sm',
+            },  
+            {
+                extend: 'pdf',
+                text: '<i class="fas fa-file-pdf"></i> ',
+                titleAttr: 'PDF',
+                className: 'btn btn-danger btn-sm',
+            },
+            {
+                extend: 'print',
+                text: '<i class="fas fa-print"></i> ',
+                titleAttr: 'Print',
+                className: 'btn btn-primary btn-sm',
+            },
+        ],
+        // Add custom styles to the DataTable
+        initComplete: function () {
+            $('.buttons-copy, .buttons-csv, .buttons-excel, .buttons-pdf, .buttons-print')
+                .css('margin', '5px')
+                .css('padding', '5px')
+                .css('border-radius', '4px')
+                .css('border', '1px solid #ccc')
+                .css('background', '#4747A1')
+                .css('color', '#fff')
+                .css('font-size', '14px')
+                .css('cursor', 'pointer')
+                .hover(
+                    function () {
+                        $(this).css('background', '#4745A1');
+                    },
+                    function () {
+                        $(this).css('background', '#4745A1');
+                    }
+                );
+        }
+    });
+});
+
+     </script>
+
+
+</body>
+
+</html>
+

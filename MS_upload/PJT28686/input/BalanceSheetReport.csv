@@ -1,0 +1,9 @@
+model_name,field_name
+BalanceSheet,assets
+BalanceSheet,liabilities
+BalanceSheet,equity
+BalanceSheet,asset_breakdown
+BalanceSheet,liability_breakdown
+BalanceSheet,created_at
+BalanceSheet,updated_at
+BalanceSheet,reported_date

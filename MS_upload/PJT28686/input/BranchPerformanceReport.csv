@@ -1,0 +1,11 @@
+model_name,field_name
+BranchPerformance,branch_name
+BranchPerformance,loan_portfolio
+BranchPerformance,repayment_rate
+BranchPerformance,total_clients
+BranchPerformance,new_clients_this_month
+BranchPerformance,created_at
+BranchPerformance,updated_at
+BranchPerformance,reported_date
+BranchPerformance,branch_location
+BranchPerformance,branch_manager

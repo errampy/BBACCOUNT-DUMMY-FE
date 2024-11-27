@@ -1,0 +1,12 @@
+model_name,field_name
+ITTicketResolution,tickets_raised
+ITTicketResolution,tickets_resolved
+ITTicketResolution,average_resolution_time_hours
+ITTicketResolution,high_priority_tickets
+ITTicketResolution,unresolved_tickets
+ITTicketResolution,created_at
+ITTicketResolution,updated_at
+ITTicketResolution,reported_date
+ITTicketResolution,ticket_categories
+ITTicketResolution,escalation_rate
+ITTicketResolution,resolution_comments

@@ -1,0 +1,11 @@
+model_name,field_name
+CustomerSatisfaction,surveys_conducted
+CustomerSatisfaction,satisfaction_score
+CustomerSatisfaction,top_complaints
+CustomerSatisfaction,net_promoter_score
+CustomerSatisfaction,repeat_customer_percentage
+CustomerSatisfaction,created_at
+CustomerSatisfaction,updated_at
+CustomerSatisfaction,reported_date
+CustomerSatisfaction,survey_response_rate
+CustomerSatisfaction,comments

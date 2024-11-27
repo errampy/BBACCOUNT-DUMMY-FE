@@ -1,0 +1,10 @@
+model_name,field_name
+SystemUptime,total_downtime_hours
+SystemUptime,uptime_percentage
+SystemUptime,scheduled_maintenance_hours
+SystemUptime,unscheduled_outage_hours
+SystemUptime,critical_systems_affected
+SystemUptime,created_at
+SystemUptime,updated_at
+SystemUptime,reported_date
+SystemUptime,system_comments

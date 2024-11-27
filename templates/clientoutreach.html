@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>active clients</th>
+<th>new clients this quarter</th>
+<th>client retention rate</th>
+<th>average client loan size</th>
+<th>inactive clients</th>
+<th>reported date</th>
+<th>outreach campaigns</th>
+<th>client feedback summary</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.active_clients}}</td>
+<td>{{data.new_clients_this_quarter}}</td>
+<td>{{data.client_retention_rate}}</td>
+<td>{{data.average_client_loan_size}}</td>
+<td>{{data.inactive_clients}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.outreach_campaigns}}</td>
+<td>{{data.client_feedback_summary}}</td>
+                    <td>
+                        <a href="{% url 'clientoutreach_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'clientoutreach_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style>
+    .iconn-tag {
+        display: flex;
+        align-items: center;
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .iconn-tag i {
+        margin-right: 8px;
+    }
+</style>
+
+<div class="content-wrapper">
+    {% if pa %}
+        <a href="{% url 'assetmanagement_list' %}" class="btn btn-warning">Validation</a>
+        {% if is_same_user_authorized %}
+        <button type="submit" form="myForm"  class="btn btn-info" value="authorize" name="authorize">Authorize</button>
+        {% elif is_send_to_authorize %}
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Send to Authorize</button>
+        {% endif %}
+        <a href="{% url 'assetmanagement_list' %}" class="btn btn-danger">Cancel</a>
+    {% endif %}
+    {% if is_for_authorize %}
+        <a href="{% url 'assetmanagement_list' %}" class="btn btn-warning">Validation</a>
+        <button type="submit" form="myForm"  class="btn btn-info" value="authorize" name="authorize">Authorize</button>
+        <button class="btn btn-danger" data-toggle="modal" data-target="#returnNotes">Return</button>
+    {% endif %}
+    {% if not pa and  not is_for_authorize %}
+
+        <button type="submit" form="myForm" class="btn btn-success">Save</button>
+        <a href="{% url 'assetmanagement_list' %}" class="btn btn-danger">Cancel</a>
+    {% endif %}
+    <div class="col-12 grid-margin stretch-card">
+        <div class="container mt-5 col-md-6">
+            <div class="card card-body">
+                <h2>{{ screen_name }}</h2>
+                    <form  method="post" enctype="multipart/form-data" id="myForm">
+                    {% csrf_token %}
+                    {% for form_field in form %}
+                    <div class="form-group">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                        <span class="text-danger">{{form_field.errors}}</span>
+                    </div>
+                    {% endfor %}
+                    {% if record_details %}
+                    {% for key,value in record_details.items %}
+                        <label>{{key}}</label>
+                        <input name="{{key}}" value="{{value}}" class="form-control" readonly>
+                    {% endfor %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Send to approval</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post" id="approval_form">
+            {% csrf_token %}
+            <label for="user_id">User</label>
+            <select name="user_id" id="user_id" class="form-control" required>
+                <option value="">select</option>
+                {% for data in user_record %}
+                <option value="{{data.id}}">{{data.first_name}}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="send_to_authorized" value="s2a" hidden="hidden">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="approval_form">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="returnNotes" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Return Notes</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'unauthorized_return' app_name='administration_department' model_name='AssetManagement' url='assetmanagement_list' %}" method="post" id="return_form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="pk" value="{{pk}}" hidden="">
+                <input type="text" name="record_id" value="{{record_id}}" hidden="">
+                <input type="text" name="table_name" value="{{table_name}}" hidden="">
+                <label for="notes">Notes</label>
+                <textarea class="form-control" id="notes" name="notes" rows="4" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="return_form">Return</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% endblock %}
+
+
+
+

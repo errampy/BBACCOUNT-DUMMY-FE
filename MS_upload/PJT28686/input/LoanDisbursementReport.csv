@@ -1,0 +1,11 @@
+model_name,field_name
+LoanDisbursement,total_loans_disbursed
+LoanDisbursement,number_of_loans
+LoanDisbursement,average_loan_size
+LoanDisbursement,highest_loan_disbursed
+LoanDisbursement,lowest_loan_disbursed
+LoanDisbursement,loan_purpose_distribution
+LoanDisbursement,disbursement_channels
+LoanDisbursement,created_at
+LoanDisbursement,updated_at
+LoanDisbursement,reported_date

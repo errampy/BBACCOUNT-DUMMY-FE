@@ -1,0 +1,12 @@
+model_name,field_name
+DataAccuracy,errors_detected
+DataAccuracy,corrected_entries_percentage
+DataAccuracy,error_sources
+DataAccuracy,audit_frequency
+DataAccuracy,system_generated_errors
+DataAccuracy,created_at
+DataAccuracy,updated_at
+DataAccuracy,reported_date
+DataAccuracy,manual_input_errors
+DataAccuracy,critical_errors
+DataAccuracy,accuracy_comments

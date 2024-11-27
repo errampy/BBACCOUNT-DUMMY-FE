@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style>
+    .content-wrapper {
+        padding: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column; 
+    }
+    .form-group label {
+        margin-bottom: 5px; 
+        font-weight: bold; 
+        text-align: left; /* Align label to the left */
+    }
+    .form-control {
+        padding: 12px 15px;
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        width: 100%; 
+        box-sizing: border-box;
+    }
+    .text-danger {
+        color: red;
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+    .btn {
+        margin-right: 10px; 
+    }
+    .btn-success, .btn-danger {
+        padding: 10px 15px;
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+</style>
+
+<div class="content-wrapper">
+    <h1>{% if is_update %}Edit{% else %}Create{% endif %} Workflow Setup</h1>
+    
+    <div class="col-12 grid-margin stretch-card">
+        <div class="container mt-5 col-md-6">
+            <div class="card card-body">
+                <form method="post" enctype="multipart/form-data" id="myForm">
+                    {% csrf_token %}
+
+                    <!-- Code Field -->
+                    <div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" name="code" value="{{ form.code.value }}" class="form-control" readonly>
+                        {% for error in form.code.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" value="" class="form-control" required>
+                        {% for error in form.description.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Category Field -->
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category" class="form-control" required>
+                            <option value="">Select Category</option>
+                            {% for category in category_list %}
+                                <option value="{{ category.code }}" {% if category.code == form.category.value %}selected{% endif %}>{{ category.code }}</option>
+                            {% endfor %}
+                        </select>
+                        {% for error in form.category.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Enabled Field -->
+                    <div class="form-group form-check">
+                        <label class="form-check-label" for="enabled">Enabled</label>
+                        <input type="checkbox" name="enabled" id="enabled" class="form-check-input" {% if form.enabled.value %}checked{% endif %}>
+
+                    </div>
+
+                    <!-- Approver Type Field -->
+                    <div class="form-group">
+                        <label for="approver_type">Approver Type</label>
+                        <select name="approver_type" id="approver_type" class="form-control" required>
+                            <option value="">Select</option>
+                            <option value="Approver" {% if form.approver_type.value == 'Approver' %}selected{% endif %}>Approver</option>
+                            <option value="Workflow_User_Group" {% if form.approver_type.value == 'Workflow_User_Group' %}selected{% endif %}>Workflow User Group</option>
+                        </select>
+                        {% for error in form.approver_type.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Approver Limit Type Field -->
+<div class="form-group">
+    <label for="approver_limit_type">Approver Limit Type</label>
+    <select name="approver_limit_type" id="approver_limit_type" class="form-control">
+        <option value="">Select</option>
+        <option value="Specific_Approver" {% if form.approver_limit_type.value == 'Specific_Approver' %}selected{% endif %}>Specific Approver</option>
+        <option value="Group_Approver" {% if form.approver_limit_type.value == 'Group_Approver' %}selected{% endif %}>Group Approver</option>
+    </select>
+    {% for error in form.approver_limit_type.errors %}
+        <span class="text-danger">{{ error }}</span>
+    {% endfor %}
+</div>
+
+                    <!-- Approver ID Field -->
+                    <div class="form-group">
+                        <label for="approver_id">Approver ID</label>
+                        <select name="approver_id" id="approver_id" class="form-control" {% if approver_id_disabled %}disabled{% endif %}>
+                            <option value="">Select Approver</option>
+                            {% for user in user_list %}
+                                <option value="{{ user.id }}" {% if user.pk == form.approver_id.value %}selected{% endif %}>{{ user.first_name }}</option>
+                            {% endfor %}
+                        </select>
+                        {% for error in form.approver_id.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- User Group Mapping -->
+                    <div class="form-group">
+                        <label for="user_group_mapping">User Group Mapping</label>
+                        <select name="user_group_mapping" id="user_group_mapping" class="form-control">
+                            <option value="">Select User Group</option>
+                            {% for group in group_list %}
+                                <option value="{{ group.code }}" {% if group.pk == form.user_group_mapping.value %}selected{% endif %}>{{ group }}</option>
+                            {% endfor %}
+                        </select>
+                        {% for error in form.user_group_mapping.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <a href="{% url 'workflow_setup_list' %}" class="btn btn-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const approverTypeSelect = document.getElementById('approver_type');
+        const approverLimitTypeSelect = document.getElementById('approver_limit_type');
+        const approverIdSelect = document.getElementById('approver_id');
+        const userGroupMappingSelect = document.getElementById('user_group_mapping');
+
+        function updateFields() {
+            const approverTypeValue = approverTypeSelect.value;
+
+            if (approverTypeValue === 'Approver') {
+                approverLimitTypeSelect.innerHTML = `
+                    <option value="">Select</option>
+                    <option value="Specific_Approver">Specific Approver</option>
+                `;
+                approverLimitTypeSelect.disabled = false;
+                approverIdSelect.disabled = false;
+                userGroupMappingSelect.disabled = true;
+            } else if (approverTypeValue === 'Workflow_User_Group') {
+                approverLimitTypeSelect.innerHTML = `
+                    <option value="">Select</option>
+                    <option value="Group_Approver">Group Approver</option>
+                `;
+                approverLimitTypeSelect.disabled = false;
+                approverIdSelect.disabled = true;
+                userGroupMappingSelect.disabled = false;
+            } else {
+                approverLimitTypeSelect.innerHTML = `<option value="">Select</option>`;
+                approverLimitTypeSelect.disabled = true;
+                approverIdSelect.disabled = true;
+                userGroupMappingSelect.disabled = true;
+            }
+        }
+
+        approverTypeSelect.addEventListener('change', updateFields);
+        updateFields(); // Initial call to set the fields based on the default selection
+    });
+</script>
+
+{% endblock %}

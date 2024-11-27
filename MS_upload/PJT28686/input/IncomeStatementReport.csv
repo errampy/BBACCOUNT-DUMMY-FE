@@ -1,0 +1,9 @@
+model_name,field_name
+IncomeStatement,revenue
+IncomeStatement,operating_expenses
+IncomeStatement,net_income
+IncomeStatement,revenue_sources
+IncomeStatement,expense_breakdown
+IncomeStatement,created_at
+IncomeStatement,updated_at
+IncomeStatement,reported_date

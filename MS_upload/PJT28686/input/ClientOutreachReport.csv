@@ -1,0 +1,11 @@
+model_name,field_name
+ClientOutreach,active_clients
+ClientOutreach,new_clients_this_quarter
+ClientOutreach,client_retention_rate
+ClientOutreach,average_client_loan_size
+ClientOutreach,inactive_clients
+ClientOutreach,created_at
+ClientOutreach,updated_at
+ClientOutreach,reported_date
+ClientOutreach,outreach_campaigns
+ClientOutreach,client_feedback_summary

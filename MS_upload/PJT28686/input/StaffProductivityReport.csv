@@ -1,0 +1,11 @@
+model_name,field_name
+StaffProductivity,total_loan_officers
+StaffProductivity,loans_per_officer
+StaffProductivity,average_portfolio_per_officer
+StaffProductivity,total_loans
+StaffProductivity,highest_loans_by_officer
+StaffProductivity,created_at
+StaffProductivity,updated_at
+StaffProductivity,reported_date
+StaffProductivity,lowest_loans_by_officer
+StaffProductivity,performance_comments

@@ -1,0 +1,12 @@
+field_name,field_type,multivalue,required,max_length,display_field_for_foreignkey,dependent_foreignkey_field,help_text,date_format,boolean_checkbox,auto_now_checkbox,auto_now_add_checkbox,max_digits,decimal_places,file_limit,foreignkey_name,ip_protocol,image_height,image_width,min_length,many_to_many,one_to_one,use_seconds_checkbox,default,null,blank,choices_fields,choices,primary_key_field,default_field,unique_field,is_user_foreignKey,is_user_many_to_many,is_user_one_to_one 
+total_loan_officers,PositiveIntegerField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+loans_per_officer,PositiveIntegerField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+average_portfolio_per_officer,FloatField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+total_loans,PositiveIntegerField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+highest_loans_by_officer,PositiveIntegerField,,False,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+created_at,DateTimeField,,True,,,,,,,,True,,,,,,,,,,,,,,,False,,False,,False,False,False,
+updated_at,DateTimeField,,True,,,,,,,True,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+reported_date,DateField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,now,False,False,False,
+lowest_loans_by_officer,PositiveIntegerField,,False,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+performance_comments,TextField,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,False,False,
+created_by,ForeignKey,,True,,,,,,,,,,,,,,,,,,,,,,,False,,False,,False,True,False,

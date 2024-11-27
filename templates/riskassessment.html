@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>top risks</th>
+<th>mitigation actions</th>
+<th>residual risk level</th>
+<th>risk review frequency</th>
+<th>reported date</th>
+<th>incidents tracked</th>
+<th>risk owner</th>
+<th>risk comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.top_risks}}</td>
+<td>{{data.mitigation_actions}}</td>
+<td>{{data.residual_risk_level}}</td>
+<td>{{data.risk_review_frequency}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.incidents_tracked}}</td>
+<td>{{data.risk_owner}}</td>
+<td>{{data.risk_comments}}</td>
+                    <td>
+                        <a href="{% url 'riskassessment_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'riskassessment_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

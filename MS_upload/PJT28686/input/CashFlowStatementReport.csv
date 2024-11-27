@@ -1,0 +1,9 @@
+model_name,field_name
+CashFlowStatement,inflows
+CashFlowStatement,outflows
+CashFlowStatement,net_cash_flow
+CashFlowStatement,inflow_sources
+CashFlowStatement,outflow_categories
+CashFlowStatement,created_at
+CashFlowStatement,updated_at
+CashFlowStatement,reported_date

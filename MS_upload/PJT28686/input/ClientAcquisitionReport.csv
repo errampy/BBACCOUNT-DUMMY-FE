@@ -1,0 +1,11 @@
+model_name,field_name
+ClientAcquisition,new_clients
+ClientAcquisition,acquisition_cost_per_client
+ClientAcquisition,total_acquisition_cost
+ClientAcquisition,acquisition_channels
+ClientAcquisition,average_conversion_rate
+ClientAcquisition,created_at
+ClientAcquisition,updated_at
+ClientAcquisition,reported_date
+ClientAcquisition,referral_percentage
+ClientAcquisition,comments

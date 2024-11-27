@@ -1,0 +1,45 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>total complaints logged</th>
+<th>resolved complaints</th>
+<th>resolution rate</th>
+<th>feedback received</th>
+<th>positive feedback percentage</th>
+<th>reported date</th>
+<th>average resolution time hours</th>
+<th>unresolved complaints</th>
+<th>escalation rate</th>
+<th>comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.total_complaints_logged}}</td>
+<td>{{data.resolved_complaints}}</td>
+<td>{{data.resolution_rate}}</td>
+<td>{{data.feedback_received}}</td>
+<td>{{data.positive_feedback_percentage}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.average_resolution_time_hours}}</td>
+<td>{{data.unresolved_complaints}}</td>
+<td>{{data.escalation_rate}}</td>
+<td>{{data.comments}}</td>
+                    <td>
+                        <a href="{% url 'feedbackandcomplaints_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'feedbackandcomplaints_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

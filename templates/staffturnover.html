@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>total departures</th>
+<th>total new hires</th>
+<th>turnover rate</th>
+<th>current staff count</th>
+<th>total staff at start</th>
+<th>reported date</th>
+<th>key departures</th>
+<th>hiring notes</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.total_departures}}</td>
+<td>{{data.total_new_hires}}</td>
+<td>{{data.turnover_rate}}</td>
+<td>{{data.current_staff_count}}</td>
+<td>{{data.total_staff_at_start}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.key_departures}}</td>
+<td>{{data.hiring_notes}}</td>
+                    <td>
+                        <a href="{% url 'staffturnover_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'staffturnover_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

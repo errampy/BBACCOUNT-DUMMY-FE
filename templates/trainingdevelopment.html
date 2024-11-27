@@ -1,0 +1,39 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>training sessions conducted</th>
+<th>staff trained</th>
+<th>total training costs</th>
+<th>average training cost per person</th>
+<th>training focus areas</th>
+<th>reported date</th>
+<th>training feedback summary</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.training_sessions_conducted}}</td>
+<td>{{data.staff_trained}}</td>
+<td>{{data.total_training_costs}}</td>
+<td>{{data.average_training_cost_per_person}}</td>
+<td>{{data.training_focus_areas}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.training_feedback_summary}}</td>
+                    <td>
+                        <a href="{% url 'trainingdevelopment_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'trainingdevelopment_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

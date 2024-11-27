@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                {% if request.user.maker %}
+                <a href="{% url 'workflowcategory_create' %}">
+                    <button type="button" class="btn btn-primary float-right">+ New</button>
+                </a>
+
+                {% endif %}
+                <h4 class="card-title">{{screen_name}}</h4>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">New</a>
+                        <a class="nav-item nav-link" id="nav-pendingapproval-tab" data-toggle="tab" href="#nav-pendingapproval" role="tab" aria-controls="nav-pendingapproval" aria-selected="false">
+                        Pending Approval
+                        </a>
+                        <a class="nav-item nav-link" id="authorize-request-tab" data-toggle="tab" href="#authorize-request" role="tab" aria-controls="authorize-request" aria-selected="false">
+                        Authorize Request
+                        </a>
+                        {% if request.user.checker %}
+                        <a class="nav-item nav-link" id="nav-pendingapproval-tab" data-toggle="tab" href="#nav-pendingapproval" role="tab" aria-controls="nav-pendingapproval" aria-selected="false">Pending Approval</a>
+                        <a class="nav-item nav-link" id="nav-approved-tab" data-toggle="tab" href="#nav-approved" role="tab" aria-controls="nav-approved" aria-selected="false">Approved</a>
+                        <a class="nav-item nav-link" id="nav-processed-tab" data-toggle="tab" href="#nav-processed" role="tab" aria-controls="nav-processed" aria-selected="false">Processed</a>
+                        {% endif %}
+                    </div>
+                </nav>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- New Tab -->
+                    <div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+                        <div class="table-responsive">
+                            <table id="tableID" class="display table table-hover">
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Code</th>
+<th>description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in obj %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ data.code }}</td>
+<td>{{data.description}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuIconButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton2">
+                                                    <a class="dropdown-item" href="{% url 'workflowcategory_view' data.code %}">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-eye"></i>View</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflowcategory_update' data.code %}">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i>Edit</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflowcategory_delete' data.code %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-trash-alt"></i>Delete</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'delegate_record' pk=data.pk app_name=app_name model_name='WorkflowCategory' url='workflowcategory_list' %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-user-shield"></i> Delegate</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Pending Approval Tab -->
+                    <div class="tab-pane fade" id="nav-pendingapproval" role="tabpanel" aria-labelledby="nav-pendingapproval-tab">
+                        <div class="table-responsive">
+                            <table id="tableID" class="display table table-hover">
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Code</th>
+<th>description</th>
+                                        <th>Status</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in obj_pa %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><a href="{% url 'workflowcategory_pa' data.code %}">{{ data.code }}</a></td>
+<td>{{data.description}}</td>
+                                        <td>{{ data.status }}</td>
+                                        <td>{{ data.notes }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="authorize-request" role="tabpanel" aria-labelledby="authorize-request-tab">
+                        <div class="table-responsive">
+                            <table id="tableID" class="display table table-hover">
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.ss</th>
+                                        <th>record id</th>
+                                        <th>table name</th>
+                                        <th>Created At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in obj_wait_auth %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><a href="{% url 'workflowcategory_authorize_request' data.pk %}">{{ data.record_id }}</a></td>
+                                        <td>{{ data.table_name }}</td>
+                                        <td>{{ data.created_at }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Approved Tab -->
+                    <div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">
+                        <div class="table-responsive">
+                            <table id="tableID" class="display table table-hover">
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Code</th>
+                                    <th>description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in obj %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ data.code }}</td>
+                                    <td>{{data.description}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Processed Tab -->
+                    <div class="tab-pane fade" id="nav-processed" role="tabpanel" aria-labelledby="nav-processed-tab">
+                        <div class="table-responsive">
+                            <table id="tableID" class="display table table-hover">
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Code</th>
+                                    <th>description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in obj %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ data.code }}</td>
+                                    <td>{{data.description}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuIconButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton2">
+                                                    <a class="dropdown-item">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="fas fa-eye"></i> View</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br><br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

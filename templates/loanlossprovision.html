@@ -1,0 +1,37 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>loans at risk</th>
+<th>provision rate</th>
+<th>required provisions</th>
+<th>loan categories</th>
+<th>remarks</th>
+<th>reported date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.loans_at_risk}}</td>
+<td>{{data.provision_rate}}</td>
+<td>{{data.required_provisions}}</td>
+<td>{{data.loan_categories}}</td>
+<td>{{data.remarks}}</td>
+<td>{{data.reported_date}}</td>
+                    <td>
+                        <a href="{% url 'loanlossprovision_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'loanlossprovision_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

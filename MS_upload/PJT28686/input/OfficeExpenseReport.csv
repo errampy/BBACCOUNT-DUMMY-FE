@@ -1,0 +1,12 @@
+model_name,field_name
+OfficeExpense,total_office_expenses
+OfficeExpense,top_expenses
+OfficeExpense,utilities_expenses
+OfficeExpense,rent_expenses
+OfficeExpense,office_supplies_expenses
+OfficeExpense,created_at
+OfficeExpense,updated_at
+OfficeExpense,reported_date
+OfficeExpense,employee_welfare_expenses
+OfficeExpense,maintenance_expenses
+OfficeExpense,comments

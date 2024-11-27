@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style>
+    .iconn-tag {
+        display: flex;
+        align-items: center;
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .iconn-tag i {
+        margin-right: 8px;
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="container mt-5 col-md-6">
+            <div class="card card-body">
+                <h2>{{ screen_name }}</h2>
+                <form action="" method="post" enctype="multipart/form-data" onsubmit="return checkEdit(event)">
+                    {% csrf_token %}
+
+                    {% for form_field in form %}
+                    <div class="form-group">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                    </div>
+                    {% endfor %}
+
+                    <a href="{% url 'customersatisfaction_list' %}" class="btn btn-danger">Cancel</a>
+
+                    {% if pa %}
+                    <button type="submit" class="btn btn-primary">Validate</button><br><br>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary">Submit</button><br><br>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const originalData = {};
+
+    // Save the original data from all input fields
+    document.querySelectorAll('input, textarea, select').forEach(input => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            originalData[input.name] = input.checked;
+        } else if (input.type === 'file') {
+            originalData[input.name] = input.files;
+        } else {
+            originalData[input.name] = input.value;
+        }
+    });
+
+    window.checkEdit = function(event) {
+        let isEdited = false;
+
+        // Check if any field has been edited
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                if (input.checked !== originalData[input.name]) {
+                    isEdited = true;
+                }
+            } else if (input.type === 'file') {
+                if (input.files.length !== originalData[input.name].length) {
+                    isEdited = true;
+                } else {
+                    for (let i = 0; i < input.files.length; i++) {
+                        if (input.files[i].name !== originalData[input.name][i].name) {
+                            isEdited = true;
+                            break;
+                        }
+                    }
+                }
+            } else {
+                if (input.value !== originalData[input.name]) {
+                    isEdited = true;
+                }
+            }
+        });
+
+        if (isEdited) {
+            return true; // Data has been edited, allow form submission
+        } else {
+            if (confirm("You have not edited the data. Do you want to continue editing?")) {
+                event.preventDefault(); // Stay on the same page
+            } else {
+                exitEdit(); // Exit without saving
+            }
+            return false;
+        }
+    };
+
+    window.exitEdit = function() {
+        window.history.back(); // Go back to the previous page
+    };
+});
+
+</script>
+{% endblock %}
+

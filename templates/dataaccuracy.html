@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>errors detected</th>
+<th>corrected entries percentage</th>
+<th>audit frequency</th>
+<th>system generated errors</th>
+<th>reported date</th>
+<th>manual input errors</th>
+<th>critical errors</th>
+<th>accuracy comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.errors_detected}}</td>
+<td>{{data.corrected_entries_percentage}}</td>
+<td>{{data.audit_frequency}}</td>
+<td>{{data.system_generated_errors}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.manual_input_errors}}</td>
+<td>{{data.critical_errors}}</td>
+<td>{{data.accuracy_comments}}</td>
+                    <td>
+                        <a href="{% url 'dataaccuracy_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'dataaccuracy_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

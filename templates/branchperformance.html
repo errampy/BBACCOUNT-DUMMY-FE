@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>branch name</th>
+<th>loan portfolio</th>
+<th>repayment rate</th>
+<th>total clients</th>
+<th>new clients this month</th>
+<th>reported date</th>
+<th>branch location</th>
+<th>branch manager</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.branch_name}}</td>
+<td>{{data.loan_portfolio}}</td>
+<td>{{data.repayment_rate}}</td>
+<td>{{data.total_clients}}</td>
+<td>{{data.new_clients_this_month}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.branch_location}}</td>
+<td>{{data.branch_manager}}</td>
+                    <td>
+                        <a href="{% url 'branchperformance_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'branchperformance_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

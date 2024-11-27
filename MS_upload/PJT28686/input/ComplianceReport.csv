@@ -1,0 +1,12 @@
+model_name,field_name
+Compliance,kyc_non_compliance_cases
+Compliance,aml_monitoring_alerts
+Compliance,penalties_incurred
+Compliance,audits_conducted
+Compliance,compliance_violations
+Compliance,created_at
+Compliance,updated_at
+Compliance,reported_date
+Compliance,compliance_training_sessions
+Compliance,training_attendees
+Compliance,compliance_comments

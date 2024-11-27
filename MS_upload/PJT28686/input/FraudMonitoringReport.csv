@@ -1,0 +1,11 @@
+model_name,field_name
+FraudMonitoring,detected_fraud_incidents
+FraudMonitoring,total_amount_involved
+FraudMonitoring,resolution_status_percentage
+FraudMonitoring,open_fraud_cases
+FraudMonitoring,fraud_detection_methods
+FraudMonitoring,created_at
+FraudMonitoring,updated_at
+FraudMonitoring,reported_date
+FraudMonitoring,fraud_prevention_actions
+FraudMonitoring,investigation_comments

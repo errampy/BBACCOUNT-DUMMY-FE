@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+              
+                <h4 class="card-title">Workflow Mapping</h4>
+
+                {% comment %} <div class="table-responsive"> {% endcomment %}   
+<form method="post" >   
+        {% csrf_token %} 
+{% if models %}
+    
+        <table class="display table table-hover">
+            <thead>
+                <tr>
+                    <th>Create</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- Create Column -->
+                    <td>
+                        {% for model in models %}
+                            {% if model.workflow_type == 'create' %}
+                                <input type='hidden' value="{{model.id}}" name='create_model'>
+
+                                <label>
+                                    <input type="radio" name="create_authorization" value='self_authorized' {% if model.self_authorized %}checked{% endif %} onclick="toggleDropdown('create_workflow_dropdown', false)">
+                                    Self Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="create_authorization" value='same_user_authorized' {% if model.same_user_authorized %}checked{% endif %} onclick="toggleDropdown('create_workflow_dropdown', false)">
+                                    Same User Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="create_authorization" value='send_to_authorize' {% if model.send_to_authorized %}checked{% endif %} onclick="toggleDropdown('create_workflow_dropdown', false)">
+                                    Send to Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="create_authorization" value='workflow_authorize' onclick="toggleDropdown('create_workflow_dropdown', true)" {% if model.workflow_authorize %}checked{% endif %}>
+                                    Workflow Authorize
+                                </label><br>
+
+                                <!-- Workflow Dropdown (Hidden by default) -->
+                                <select id="create_workflow_dropdown" name="create_workflow"  style="display: {% if model.workflow_authorize %}block{% else %}none{% endif %};"  class='form-control-sm'>
+                                    <option value="">Select Workflow</option>
+                                    {% for workflow in workflows %}
+                                        <option value="{{ workflow.code }}" {% if model.workflow.code == workflow.code %} selected {% endif %}>{{ workflow.description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <!-- Update Column -->
+                    <td>
+                        {% for model in models %}
+                            {% if model.workflow_type == 'update' %}
+                                <input type='hidden' value="{{model.id}}" name='update_model'>
+                                
+                                <label>
+                                <input type="radio" name="update_authorization" value='self_authorized' {% if model.self_authorized %}checked{% endif %} onclick="toggleDropdown('update_workflow_dropdown', false)">
+                                    Self Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="update_authorization" value='same_user_authorized' {% if model.same_user_authorized %}checked{% endif %} onclick="toggleDropdown('update_workflow_dropdown', false)">
+                                    Same User Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="update_authorization" value='send_to_authorize' {% if model.send_to_authorized %}checked{% endif %} onclick="toggleDropdown('update_workflow_dropdown', false)">
+                                    Send to Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="update_authorization" value='workflow_authorize' onclick="toggleDropdown('update_workflow_dropdown', true)" {% if model.workflow_authorize %}checked{% endif %}>
+                                    Workflow Authorize
+                                </label><br>
+
+                                <!-- Workflow Dropdown (Hidden by default) -->
+                                <select id="update_workflow_dropdown" name="update_workflow" style="display: {% if model.workflow_authorize %}block{% else %}none{% endif %};"  class='form-control-sm'>
+                                    <option value="">Select Workflow</option>
+                                    {% for workflow in workflows %}
+                                        <option value="{{ workflow.code }}" {% if model.workflow.code == workflow.code %} selected {% endif %}>{{ workflow.description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <!-- Delete Column -->
+                    <td>
+                        {% for model in models %}
+                            {% if model.workflow_type == 'delete' %}
+                                <input type='hidden' value="{{model.id}}" name='delete_model'>
+                                <label>
+                                    <input type="radio" name="delete_authorization" value='self_authorized' {% if model.self_authorized %}checked{% endif %} onclick="toggleDropdown('delete_workflow_dropdown', false)">
+                                    Self Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="delete_authorization" value='same_user_authorized' {% if model.same_user_authorized %}checked{% endif %} onclick="toggleDropdown('delete_workflow_dropdown', false)">
+                                    Same User Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="delete_authorization" value='send_to_authorize' {% if model.send_to_authorized %}checked{% endif %} onclick="toggleDropdown('delete_workflow_dropdown', false)">
+                                    Send to Authorized
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="delete_authorization" value='workflow_authorize' onclick="toggleDropdown('delete_workflow_dropdown', true)" {% if model.workflow_authorize %}checked{% endif %}>
+                                    Workflow Authorize
+                                </label><br>
+
+                                <!-- Workflow Dropdown (Hidden by default) -->
+                                <select id="delete_workflow_dropdown" name="delete_workflow" style="display: {% if model.workflow_authorize %}block{% else %}none{% endif %};"  class='form-control-sm'>
+                                    <option value="">Select Workflow</option>
+                                    {% for workflow in workflows %}
+                                        <option value="{{ workflow.code }}" {% if model.workflow.code == workflow.code %} selected {% endif %}>{{ workflow.description }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success" style="text-align: center;">Save</button>
+        </div>
+            
+    
+{% endif %}
+</form>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function toggleDropdown(dropdownId, show) {
+        const dropdown = document.getElementById(dropdownId);
+        if (show) {
+            dropdown.style.display = 'block';
+        } else {
+            dropdown.style.display = 'none';
+            dropdown.value = ''; // Reset dropdown to "Select Workflow"
+        }
+    }
+</script>
+        
+{% endblock %}

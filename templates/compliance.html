@@ -1,0 +1,43 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>kyc non compliance cases</th>
+<th>aml monitoring alerts</th>
+<th>penalties incurred</th>
+<th>audits conducted</th>
+<th>compliance violations</th>
+<th>reported date</th>
+<th>compliance training sessions</th>
+<th>training attendees</th>
+<th>compliance comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.kyc_non_compliance_cases}}</td>
+<td>{{data.aml_monitoring_alerts}}</td>
+<td>{{data.penalties_incurred}}</td>
+<td>{{data.audits_conducted}}</td>
+<td>{{data.compliance_violations}}</td>
+<td>{{data.reported_date}}</td>
+<td>{{data.compliance_training_sessions}}</td>
+<td>{{data.training_attendees}}</td>
+<td>{{data.compliance_comments}}</td>
+                    <td>
+                        <a href="{% url 'compliance_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'compliance_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

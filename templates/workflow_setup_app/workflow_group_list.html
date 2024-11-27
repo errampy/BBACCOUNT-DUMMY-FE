@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <a href="{% url 'workflow_group_create' %}" class="btn btn-primary float-right">+ New
+                 
+                </a>
+                <h3 class="card-title">Workflow Groups</h3>
+                <br><br>
+                <div class="table-responsive">
+                    <table id="tableID" class="display table table-hover">
+                        <thead class="bg-col">
+                            <tr>
+                                <th>No.</th>
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if groups %}
+                                {% for data in groups %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ data.code }}</td>
+                                    <td>{{ data.description }}</td>
+                                    <td>
+                                        {% if data.code %}
+<div class="dropdown">
+                                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuIconButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton2">
+                                                    <a class="dropdown-item" href="">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-eye"></i>View</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflow_group_update' data.code %}">
+                                                        <button class="btn iconbg-yellow" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="fas fa-edit"></i>Edit</button>
+                                                    </a>
+                                                    <a class="dropdown-item" href="{% url 'workflow_group_delete' data.code %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-trash-alt"></i>Delete</button>
+                                                    </a>
+                                                    {% comment %} <a class="dropdown-item" href="{% url 'delegate_record' pk=data.pk model_name='Member' app_name='mainapp' url='member-list' %}">
+                                                        <button class="btn iconbg-rose" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"><i class="fas fa-user-shield"></i> Delegate</button>
+                                                    </a> {% endcomment %}
+                                                </div>                                        
+                                                {% endif %}
+                                    </td> 
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            {% else %}
+                                <tr>
+                                <td colspan="4">No categories available.</td>
+                                </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

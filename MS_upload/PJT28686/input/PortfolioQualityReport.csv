@@ -1,0 +1,11 @@
+model_name,field_name
+PortfolioQuality,portfolio_at_risk
+PortfolioQuality,total_outstanding_portfolio
+PortfolioQuality,amount_overdue
+PortfolioQuality,loans_at_risk_count
+PortfolioQuality,risk_categorization
+PortfolioQuality,recovery_rate
+PortfolioQuality,average_loan_age
+PortfolioQuality,created_at
+PortfolioQuality,updated_at
+PortfolioQuality,reported_date

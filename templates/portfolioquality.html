@@ -1,0 +1,41 @@
+<div class="card p-3 mt-3">
+    <div class="table-responsive  mt-3">
+        <table id="tableID" class="display">
+            <thead style="background-color: rgb(231, 252, 231); " class="mt-3">
+                <tr>
+<th>portfolio at risk</th>
+<th>total outstanding portfolio</th>
+<th>amount overdue</th>
+<th>loans at risk count</th>
+<th>risk categorization</th>
+<th>recovery rate</th>
+<th>average loan age</th>
+<th>reported date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in records %}
+                <tr>
+<td>{{data.portfolio_at_risk}}</td>
+<td>{{data.total_outstanding_portfolio}}</td>
+<td>{{data.amount_overdue}}</td>
+<td>{{data.loans_at_risk_count}}</td>
+<td>{{data.risk_categorization}}</td>
+<td>{{data.recovery_rate}}</td>
+<td>{{data.average_loan_age}}</td>
+<td>{{data.reported_date}}</td>
+                    <td>
+                        <a href="{% url 'portfolioquality_edit' data.id %}"><span data-toggle="tooltip" title="edit" style="color: black;"><i class='fa fa-edit'></i></a>
+                        <a href="{% url 'portfolioquality_delete' data.id %}"><span data-toggle="tooltip" title="Delete" style="color: black;"><i class='fa fa-remove' onclick="alert('You want to Delete this Item..?')"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+ {% endblock %}
+        

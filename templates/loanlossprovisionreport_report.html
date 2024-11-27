@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<title>{{screen_name}}</title>
+<div class="content-wrapper">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+                <br><br>
+                        <h2 class="text-center">{{ screen_name }}</h2>
+                
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="row justify-content-center">
+                                <!-- From Date Field -->
+                                <div class="col-md-4">
+                                    <label for="from_date" class="form-label">From Date</label>
+                                    <input type="date" id="from_date" name="from_date" class="form-control">
+                                </div>
+                                
+                                <!-- To Date Field -->
+                                <div class="col-md-4">
+                                    <label for="to_date" class="form-label">To Date</label>
+                                    <input type="date" id="to_date" name="to_date" class="form-control">
+                                </div>
+                            </div>
+                
+                            <!-- Submit Button -->
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                
+                        <!-- Success/Failure Messages -->
+                        <div class="d-flex justify-content-center mt-5">
+                                <div class="col-md-4">
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-info text-center">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                
+                        {% if report %}
+            <div class="mt-5">
+               
+                  
+                        <div class="table-responsive">
+                            <div>
+                                <button id="copy" class="btn btn-info btn-sm"><i class="fas fa-copy"></i> Copy</button>
+                                <button id="csv" class="btn btn-success btn-sm"><i class="fas fa-file-csv"></i> CSV</button>
+                                <button id="excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> Excel</button>
+                                <button id="pdf" class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
+                                <button id="print" class="btn btn-primary btn-sm"><i class="fas fa-print"></i> Print</button>
+                            </div>
+                            
+                                <h4 class="text-center">{{ screen_name }}</h4>
+                                <table id='ReportID' class="table table-bordered table-striped">
+                          
+                                <thead class="bg-col">
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Code</th>
+<th>loans at risk</th>
+<th>provision rate</th>
+<th>required provisions</th>
+<th>loan categories</th>
+<th>remarks</th>
+<th>reported date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in report %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ data.code }}</td>
+<td>{{data.loans_at_risk}}</td>
+<td>{{data.provision_rate}}</td>
+<td>{{data.required_provisions}}</td>
+<td>{{data.loan_categories}}</td>
+<td>{{data.remarks}}</td>
+<td>{{data.reported_date}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                <br><br><br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
